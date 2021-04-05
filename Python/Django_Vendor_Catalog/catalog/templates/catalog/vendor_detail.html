@@ -1,0 +1,62 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+    $("#tabela input").keyup(function(){
+        var index = $(this).parent().index();
+        var nth = "#tabela td:nth-child("+(index+1).toString()+")";
+        var valor = $(this).val().toUpperCase();
+        $("#tabela tbody tr").show();
+        $(nth).each(function(){
+            if($(this).text().toUpperCase().indexOf(valor) < 0){
+                $(this).parent().hide();
+            }
+        });
+    });
+
+    $("#tabela input").blur(function(){
+        $(this).val("");
+    });
+});
+  </script>
+  <h1>Vendor: {{ vendor.name }}</h1>
+    <table>
+        <td width="150"><a href="{% url 'vendor_update' vendor.id %}">Update_Vendor</a></td>
+        <td width="150"><a href="{% url 'vendor_delete' vendor.id %}">Delete_Vendor</a></td>
+    </table>
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Products</h4>
+      <ul class="sidebar-nav">
+          <li><a href="{% url 'product_create' %}">New_Product</a></li>
+      </ul>
+        <table class="table table-bordered", id="tabela">
+            <thead>
+                <th><strong>Product</strong></th>
+                <th><strong>Code</strong></th>
+                <th><strong>Price $</strong></th>
+                <th><strong>Delete</strong></th>
+                <tr>
+                    <th><input type="text" id="txtColuna1"/></th>
+                    <th><input type="text" id="txtColuna2"/></th>
+                    <th><input type="text" id="txtColuna3"/></th>
+                    <th>---</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in vendor.product_set.all %}
+                <p>
+                    {{ product.get_status_display }}
+                </p>
+                <tr><td width="150"><a href="{% url 'product_update' product.id %}">{{product.product}}</a></td>
+                    <td width="150">{{ product.code }}</td>
+                    <td width="150">{{ product.price }}</td>
+                    <td width="50"><a href="{% url 'product_delete' product.id %}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      <p>To edit click on Product...</p>
+  </div>
+{% endblock %}

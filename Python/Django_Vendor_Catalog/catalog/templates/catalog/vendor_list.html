@@ -1,0 +1,49 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+    $("#tabela input").keyup(function(){
+        var index = $(this).parent().index();
+        var nth = "#tabela td:nth-child("+(index+1).toString()+")";
+        var valor = $(this).val().toUpperCase();
+        $("#tabela tbody tr").show();
+        $(nth).each(function(){
+            if($(this).text().toUpperCase().indexOf(valor) < 0){
+                $(this).parent().hide();
+            }
+        });
+    });
+
+    $("#tabela input").blur(function(){
+        $(this).val("");
+    });
+  });
+  </script>
+  <h1>Vendor List</h1>
+  {% if vendor_list %}
+  <table class="table table-bordered", id="tabela">
+    <thead>
+      <th><strong>Vendor</strong></th>
+      <th><strong>CNPJ (only numbers)</strong></th>
+      <th><strong>City</strong></th>
+    <tr>
+        <th><input type="text" id="txtColuna1"/></th>
+        <th><input type="text" id="txtColuna2"/></th>
+        <th><input type="text" id="txtColuna3"/></th>
+    </tr>
+    </thead>
+    <tbody>
+      {% for vendor in vendor_list %}
+      <tr><td width="150"><a href="{{ vendor.get_absolute_url }}">{{ vendor.name }}</a></td>
+          <td width="150">{{ vendor.cnpj }}</td>
+          <td width="150">{{ vendor.city }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>There are no vendors in the system.</p>
+  {% endif %}
+{% endblock %}

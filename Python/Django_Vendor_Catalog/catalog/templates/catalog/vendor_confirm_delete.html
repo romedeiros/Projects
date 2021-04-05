@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Delete Vendor</h1>
+
+<p>Are you sure you want to delete the vendor: {{ vendor }}?</p>
+<p style="color:red"><strong>Their products will also be deleted!!</strong></p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes, delete.">
+</form>
+
+{% endblock %}

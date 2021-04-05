@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Vendor's Catalog Home</h1>
+  <p>Welcome to Vendor's Catalog, a website developed by <em>Rodrigo Medeiros</em>!</p>
+  <h2>Dynamic content</h2>
+  <p>Our system has already registered:</p>
+  <ul>
+    <li><strong>Vendors:</strong> {{ num_vendors }}</li>
+    <li><strong>Products:</strong> {{ num_products }}</li>
+  </ul>
+{% endblock %}
