@@ -1,4 +1,5 @@
 json.id restaurant.id
+json.slug restaurant.slug
 json.name restaurant.name
 json.description restaurant.description
 json.delivery_tax restaurant.delivery_tax
