@@ -1,9 +1,9 @@
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 
-const { persitAtom } = recoilPersist()
+const { persistAtom } = recoilPersist();
 
-const adrressState = atom ({
+const addressState = atom ({
     key: 'addressState',
     default: {
         city: '',

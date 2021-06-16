@@ -13,12 +13,12 @@ function MyApp({ Component, pageProps }) {
       </Head>
       
       <main>
-        <Header />
-        <Container className='mt-5'>
-          <RecoilRoot>
-            <Component {...pageProps} />
-          </RecoilRoot>
-        </Container>
+        <RecoilRoot>
+          <Header />
+          <Container className='mt-5'>
+              <Component {...pageProps} />
+          </Container>
+        </RecoilRoot>
       </main>
     </>
   )
