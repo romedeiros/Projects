@@ -13,7 +13,9 @@ export default function DetailsRestaurant() {
 	   return <Alert variant='custom-red'>Erro ao carregar</Alert>
 	 else if(isLoading)
 	   return <Spinner animation='border'/>
-
+	else if (restaurant.length == 0)
+	   return <Col><Custom404 /></Col>
+	   
 	 return(
 	   <>
 		 <Details {...restaurant} />

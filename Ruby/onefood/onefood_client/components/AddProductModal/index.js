@@ -28,7 +28,7 @@ export default function AddProductModal(props) {
 	 setCart({ restaurant: props.restaurant, products: [...cart.products.slice(0, index), 
 		product, ...cart.products.slice(index+1)]})
     }
-	else
+   else
 	 setCart({ restaurant: props.restaurant, products: [...cart.products, product] })
 
    setQuantity(1)

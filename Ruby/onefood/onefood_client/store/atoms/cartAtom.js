@@ -5,7 +5,7 @@ const { persistAtom } = recoilPersist()
 
 const cartState = atom({
     key: 'cartstate',
-    default: {restaurant: {}, products: {}},
+    default: {restaurant: {}, products: []},
     effects_UNSTABLE: [persistAtom]
 });
 
